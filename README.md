@@ -64,3 +64,6 @@ Other stopping policies could also be tried, or different parameters for the sto
 ## Proof of cluster clean up
 **If you did not delete your compute cluster in the code, please complete this section. Otherwise, delete this section.**
 **Image of cluster marked for deletion**
+
+![plot](./cluster-deletion.png)
+
