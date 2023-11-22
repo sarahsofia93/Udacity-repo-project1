@@ -15,12 +15,24 @@ This model is then compared to an Azure AutoML run.
 ## Summary
 **In 1-2 sentences, explain the problem statement: e.g "This dataset contains data about... we seek to predict..."**
 
+This dataset contains Bank marketing data that includes information about clients of a bank (including age, job type, marital status etc. ). The goal is to predict whether a client will subscribe to a term deposit at the bank ("yes" or "no" classification).
+
 **In 1-2 sentences, explain the solution: e.g. "The best performing model was a ..."**
+
+The best performing model was a VotingEnsemble (accuracy = 0.91742), i.e. a XGBoost Classifier during the AutoML run.
 
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
+The pipeline architecure is defined in the train.py file. First, the public dataset on bank marketing is transformed into a TabularDataset using TabularDatasetFactory. Using the clean_data function, the data is cleaned: All input parameters are converted to integer classes.  Binary classes (such as married) are encoded using 0 and 1. Inpute parameters with more than one class (e.g., jobs) are one hot encoded. Month and day of the week are mapped to numbers (1-12 and 1-7). The function returns the input data and the target variable separately.
+
+For the hyperparameter tuning, the parameters "Inverse of the regularization strength" and "Maximum number of iterations to converge" are used. For the first, numbers in between 0.01 and 100 are chosen from a uniform distirbution. For the latter, a (random) choice between 50, 100 and 200 is made.
+
+Finally, the data is split into train and test sets and then a logistic Regression is used on it, using accuracy as metric.
+
 
 **What are the benefits of the parameter sampler you chose?**
+
+
 
 **What are the benefits of the early stopping policy you chose?**
 
